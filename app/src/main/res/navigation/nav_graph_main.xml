@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/home_fragment">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:label="@string/home_page"
+        android:name="com.kotlin.practice.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            style="@style/page_animation"
+            android:id="@+id/home_to_camera_activity"
+            app:destination="@+id/camera_activity"
+            />
+
+        <action
+            style="@style/page_animation"
+            android:id="@+id/home_to_download_activity"
+            app:destination="@+id/download_activity"
+            />
+
+        <action
+            style="@style/page_animation"
+            app:destination="@id/other_activity"
+            android:id="@+id/home_to_other_activity"
+            />
+
+        <action
+            style="@style/page_animation"
+            app:destination="@id/future_plans_activity"
+            android:id="@+id/home_to_future_plans_activity"
+            />
+
+        <action
+            style="@style/page_animation"
+            app:destination="@id/training_records_activity"
+            android:id="@+id/home_to_training_records_activity"
+            />
+
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/mine_fragment"
+        android:name="com.kotlin.practice.ui.mine.MineFragment"
+        tools:layout="@layout/fragment_mine"
+        android:label="@string/mine_page">
+
+        <action
+            style="@style/page_animation"
+            app:destination="@id/theme_operate_activity"
+            android:id="@+id/mine_to_theme_fragment"
+            />
+
+        <action
+            style="@style/page_animation"
+            app:destination="@id/operate_database_activity"
+            android:id="@+id/mine_to_operate_database_page"
+            />
+
+
+        <action
+            style="@style/page_animation"
+            app:destination="@id/query_database_activity"
+            android:id="@+id/mine_to_query_database_page"
+            />
+
+        <action
+            style="@style/page_animation"
+            app:destination="@id/about_us_activity"
+            android:id="@+id/mine_to_about_us_page"
+            />
+
+        <action
+            style="@style/page_animation"
+            app:destination="@id/settings_activity"
+            android:id="@+id/mine_to_settings_page"
+            />
+
+    </fragment>
+
+    <activity
+        android:id="@+id/camera_activity"
+        android:name="com.kotlin.practice.ui.camera.CameraActivity"
+        tools:layout="@layout/activity_camera"
+        android:label="@string/camera_page"
+        />
+
+    <activity
+        android:id="@+id/theme_operate_activity"
+        android:name="com.kotlin.practice.ui.theme.ThemeOperateActivity"
+        tools:layout="@layout/activity_theme_operate"
+        android:label="@string/theme_page"
+        />
+
+
+    <activity
+        android:id="@+id/operate_database_activity"
+        android:name="com.kotlin.practice.ui.database.OperateDatabaseActivity"
+        tools:layout="@layout/activity_operate_database"
+        android:label="@string/operate_database_page"
+        />
+
+
+    <activity
+        android:id="@+id/query_database_activity"
+        android:name="com.kotlin.practice.ui.database.QueryDatabaseActivity"
+        tools:layout="@layout/activity_query_database"
+        android:label="@string/query_database_page"
+        />
+
+    <activity
+        android:id="@+id/download_activity"
+        android:name="com.kotlin.practice.ui.download.DownloadActivity"
+        tools:layout="@layout/activity_download"
+        android:label="@string/download_page"
+        />
+
+    <activity
+        android:id="@+id/other_activity"
+        android:name="com.kotlin.practice.OtherModulesActivity"
+        tools:layout="@layout/activity_other_modules"
+        android:label="@string/other_modules_page"
+        />
+
+    <activity
+        android:id="@+id/future_plans_activity"
+        android:name="com.kotlin.practice.ui.plan.FuturePlansActivity"
+        tools:layout="@layout/activity_future_plans"
+        android:label="@string/future_plans_page"
+        />
+
+    <activity
+        android:id="@+id/training_records_activity"
+        android:name="com.kotlin.practice.ui.train.TrainingRecordsActivity"
+        tools:layout="@layout/activity_train_records"
+        android:label="@string/train_records_page"
+        />
+
+    <activity
+        android:id="@+id/about_us_activity"
+        android:name="com.kotlin.practice.ui.about.AboutUsActivity"
+        tools:layout="@layout/activity_about_us"
+        android:label="@string/about_us_page"
+        />
+
+
+    <activity
+        android:id="@+id/settings_activity"
+        android:name="com.kotlin.practice.ui.settings.SettingsActivity"
+        tools:layout="@layout/activity_settings"
+        android:label="@string/file_manager_page"/>
+
+</navigation>

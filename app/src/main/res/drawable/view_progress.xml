@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="@dimen/dp_5" />
+            <gradient
+                android:angle="0"
+                android:endColor="@color/color_333333"
+                android:startColor="@color/color_333333" />
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <!--            让背景进行缩放，而不是右侧截断的效果-->
+            <scale
+                android:drawable="@drawable/progress_shape"
+                android:scaleWidth="100%" />
+        </clip>
+
+    </item>
+</layer-list>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <base-config cleartextTrafficPermitted="true"/>
+</network-security-config>
+
+<!--解决网络请求时问题：java.net.UnknownServiceException: CLEARTEXT communication to  not permitted by network security policy-->

@@ -1,0 +1,77 @@
+//额外拓展的属性内容，依赖、验签内容等
+ext{
+    //android基础配置
+    Android = [
+            //编译时使用的android版本
+            compileSdkVersion: 32,
+            //最小支持的android版本
+            minSdkVersion    : 21,
+            //手机系统高于当前android版本会以当前设定版本为准（舍弃高版本的新特性）
+            targetSdkVersion : 32,
+            versionCode      : 1,
+            versionName      : "1.0.0"
+    ]
+
+    //依赖的版本号管理
+    DependVersion = [
+            //jetpack管理版本
+            //生命周期监听，根据gradlew :app:dependencies发现androidx.appcompat:appcompat:1.3.0中已经添加了对应的依赖，这里不做处理
+//            lifecycleVersion = "2.2.0",
+            //片段/页面跳转管理
+            navigationVersion : "2.5.3",
+            //本地数据库持久化存储
+            roomVersion : "2.4.3",
+
+            //retrofit网络请求框架
+            retrofitVersion : "2.9.0",
+
+            //cameraX版本
+            cameraxVersion : '1.1.0-beta01',
+
+            //分页管理
+            pagingVersion : '3.1.1'
+    ]
+
+    //具体依赖lib
+    SupportDependencies = [
+            //（兼容所有版本，之前的v4、v7是为了兼容api4和api7之前版本出现的。直接使用androidX取代即可，Jetpack组件是AndroidX 库里面的一部分）
+            appcompat : "androidx.appcompat:appcompat:1.3.0",
+            //拓展的组件，提供丰富的二次封装UI以及基础组件依赖，例如：recyclerview,viewpager等
+            material : "com.google.android.material:material:1.4.0",
+            //kotlin核心依赖，其中core和build.gradle中引入的org.jetbrains.kotlin.android，包含了kotlin-stdlib相关的标准库（当前库可以不依赖，可能会造成版本冲突）
+            coreKtx : "androidx.core:core-ktx:1.7.0",
+            //constraintlayout布局库引入
+            constraintlayout : "androidx.constraintlayout:constraintlayout:2.0.4",
+
+
+            //jetpack管理（根据官网的demo进行依赖）
+
+            navigationFragment : "androidx.navigation:navigation-fragment-ktx:${DependVersion.navigationVersion}",
+            navigationUI : "androidx.navigation:navigation-ui-ktx:${DependVersion.navigationVersion}",
+            navigationSafeArgs : "androidx.navigation:navigation-safe-args-gradle-plugin:${DependVersion.navigationVersion}",
+
+            roomRuntime : "androidx.room:room-runtime:${DependVersion.roomVersion}",
+            roomCompiler : "androidx.room:room-compiler:${DependVersion.roomVersion}",
+            roomKtx : "androidx.room:room-ktx:${DependVersion.roomVersion}",
+
+            //网络请求框架 + 请求拦截器
+            retrofit : "com.squareup.retrofit2:retrofit:${DependVersion.retrofitVersion}",
+            retrofitGson : "com.squareup.retrofit2:converter-gson:${DependVersion.retrofitVersion}",
+            interceptor : "com.squareup.okhttp3:logging-interceptor:3.8.0",
+
+            //照相机管理
+            cameraxCore : "androidx.camera:camera-core:${DependVersion.cameraxVersion}",
+            cameraxCamera2 : "androidx.camera:camera-camera2:${DependVersion.cameraxVersion}",
+            cameraxLifecycle : "androidx.camera:camera-lifecycle:${DependVersion.cameraxVersion}",
+            cameraxView : "androidx.camera:camera-view:${DependVersion.cameraxVersion}",
+
+            //分页管理
+           paging : "androidx.paging:paging-runtime:${DependVersion.pagingVersion}"
+
+
+    ]
+
+
+
+    //密钥内容配置
+}

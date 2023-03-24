@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--首页功能块展示-->
+    <string-array name="MainHomeModuleTitle">
+        <item>客户拍摄</item>
+        <item>下载任务</item>
+        <item>往年比较</item>
+        <item>未来计划</item>
+        <item>培训记录</item>
+    </string-array>
+
+    <string-array name="MainHomeModuleDrawable">
+        <item>@drawable/ic_main_module_client</item>
+        <item>@drawable/ic_main_module_task</item>
+        <item>@drawable/ic_main_module_contrast</item>
+        <item>@drawable/ic_main_module_plan</item>
+        <item>@drawable/ic_main_module_train</item>
+    </string-array>
+
+
+</resources>

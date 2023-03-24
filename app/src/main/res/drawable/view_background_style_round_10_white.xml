@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 边 -->
+    <item>
+        <shape android:shape="rectangle">
+            <padding
+                android:bottom="@dimen/dp_2"
+                android:left="@dimen/dp_2"
+                android:right="@dimen/dp_2"
+                android:top="@dimen/dp_2" />
+            <solid android:color="#03000000" />
+            <corners android:radius="@dimen/dp_10" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <padding
+                android:bottom="@dimen/dp_2"
+                android:left="@dimen/dp_2"
+                android:right="@dimen/dp_2"
+                android:top="@dimen/dp_2" />
+            <solid android:color="#05000000" />
+            <corners android:radius="@dimen/dp_10" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <padding
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
+            <solid android:color="#08000000" />
+            <corners android:radius="@dimen/dp_10" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <padding
+                android:bottom="@dimen/dp_2"
+                android:left="@dimen/dp_2"
+                android:right="@dimen/dp_2"
+                android:top="@dimen/dp_2" />
+            <solid android:color="#0A000000" />
+            <corners android:radius="@dimen/dp_10" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <padding
+                android:bottom="@dimen/dp_2"
+                android:left="@dimen/dp_2"
+                android:right="@dimen/dp_2"
+                android:top="@dimen/dp_2" />
+            <solid android:color="#0D000000" />
+            <corners android:radius="@dimen/dp_10" />
+        </shape>
+    </item>
+
+    <!-- 中心背景 -->
+    <item>
+        <shape android:shape="rectangle"
+            android:useLevel="false">
+            <!-- 实心 -->
+            <solid android:color="?attr/contentBackgroundColor" />
+            <corners android:radius="@dimen/dp_10"/>
+            <padding android:left="@dimen/dp_10"
+                android:right="@dimen/dp_10"
+                android:top="@dimen/dp_10"
+                android:bottom="@dimen/dp_10"/>
+        </shape>
+    </item>
+</layer-list>

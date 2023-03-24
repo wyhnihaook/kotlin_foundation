@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+            name="data"
+            type="com.kotlin.practice.helper.recyclerview.FooterBean" />
+
+        <import type="android.view.View"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <!--        加载中/没有更多数据的文案展示-->
+        <TextView
+            android:visibility="@{data.isLoading||data.noMore?View.VISIBLE:View.INVISIBLE}"
+            android:id="@+id/desc"
+            style="@style/textViewStyle"
+            android:text="@{data.noMore?@string/load_no_more:@string/load_loading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        网络异常后展示的内容-->
+        <Button
+            android:visibility="@{data.isError?View.VISIBLE:View.INVISIBLE}"
+            android:id="@+id/reload"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_50"
+            android:text="@string/load_error"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

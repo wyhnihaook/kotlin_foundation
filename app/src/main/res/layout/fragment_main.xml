@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.kotlin.practice.ui.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MainFragment">
+
+        <LinearLayout
+            android:id="@+id/vary_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/nav_main_host_fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                app:defaultNavHost = "true"
+                app:navGraph="@navigation/nav_graph_main"
+                />
+
+            <!--        底部导航栏，通过配置文件设置底部显示内容  labelVisibilityMode设置固定位置显示-->
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/nav_bottom_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:menu="@menu/main_bottom_nav_menu"
+                app:itemIconSize="@dimen/dp_18"
+                android:theme="@style/BottomNavigationTheme"
+                android:background="?attr/backgroundColor"
+                app:itemBackground="?attr/backgroundColor"
+                app:itemTextAppearanceActive="@style/BottomTabTitleActive"
+                app:itemTextAppearanceInactive="@style/BottomTabTitleInActive"
+                app:elevation="@dimen/dp_2"
+                app:itemRippleColor="@color/transport"
+                app:labelVisibilityMode="labeled"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    startDestination指定起始的页面-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/main_fragment"
+    android:id="@+id/nav_graph">
+
+    <!--    name 指定切入的Fragment页面完整路径 ，label 字段包含该目的地的用户可读名称-->
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.kotlin.practice.ui.MainFragment"
+        android:label="@string/main_page"
+        tools:layout="@layout/fragment_main">
+
+        <!--        action标签 跳转动作-->
+        <action
+            style="@style/page_animation"
+            android:id="@+id/main_to_rank_fragment"
+            app:destination="@id/rank_fragment"/>
+
+        <action
+            style="@style/page_animation"
+            android:id="@+id/main_to_other_activity"
+            app:destination="@id/other_activity" />
+
+
+    </fragment>
+
+
+    <!--    其他activity活动页面-->
+    <activity
+        android:id="@+id/other_activity"
+        android:name="com.kotlin.practice.OtherModulesActivity"
+        android:label="@string/other_modules_page"
+        tools:layout="@layout/activity_other_modules"
+        />
+
+    <fragment
+        android:id="@+id/mine_fragment"
+        android:name="com.kotlin.practice.ui.mine.MineFragment"
+        tools:layout="@layout/fragment_mine"
+        android:label="@string/mine_page"
+        />
+
+    <fragment
+        android:id="@+id/rank_fragment"
+        android:name="com.kotlin.practice.ui.rank.RankFragment"
+        android:label="@string/rank_page"
+        tools:layout="@layout/fragment_rank">
+
+        <!--        结合使用 Safe Args传递安全的数据，可以确保类型安全    -->
+        <argument
+            android:name="count"
+            app:argType="integer"
+            android:defaultValue="2" />
+
+        <!--        允许实体类值为null-->
+        <argument
+            app:nullable="true"
+            android:name="rankData"
+            app:argType="com.kotlin.practice.ui.rank.RankBean"
+            android:defaultValue="@null" />
+
+    </fragment>
+
+
+
+
+    <!--   全局操作 多个节点都需要返回到同一个页面，设置相同目的地（必须在一个链路中）-->
+    <!--   在action中配置popUpTo属性，指的是在当前路由中，一直将页面出栈，直到指定的页面为止，
+    而popUpToInclusive 为 true 则表示 popUpTo 对应的 fragment 也一并弹出，false则是回退到popUpTo这个页面-->
+
+    <!--    快捷返回定位到当前内容-->
+    <action android:id="@+id/action_pop_out_of_mainFragment"
+        app:popUpTo="@id/main_fragment"
+        app:popUpToInclusive="false"
+        />
+
+    <!--    快捷开启/创建定位页面-->
+    <action android:id="@+id/action_global_mainFragment"
+        app:destination="@id/main_fragment"/>
+
+</navigation>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.kotlin.practice.db.user.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_10"
+            android:id="@+id/no"
+            app:layout_constraintTop_toTopOf="@+id/container"
+            app:layout_constraintLeft_toLeftOf="@+id/container"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:text="@{@string/concat_number+user.uid}"
+            style="@style/textViewStyle"
+            tools:text="no.1"
+            />
+
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_10"
+            android:id="@+id/name"
+            app:layout_constraintTop_toTopOf="@+id/container"
+            app:layout_constraintLeft_toRightOf="@+id/no"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:text="@{@string/concat_name+user.name}"
+            style="@style/textViewStyle"
+            tools:text="我是谁"
+            />
+
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_10"
+            android:id="@+id/gender"
+            app:layout_constraintTop_toTopOf="@+id/container"
+            app:layout_constraintLeft_toRightOf="@+id/name"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:text="@{@string/concat_gender+user.gender}"
+            style="@style/textViewStyle"
+            tools:text="女"
+            />
+
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_5"
+            android:id="@+id/address"
+            app:layout_constraintTop_toBottomOf="@+id/no"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:text="@{@string/concat_address+user.address}"
+            style="@style/textViewStyle"
+            tools:text="地址"
+            />
+
+
+        <View
+            style="@style/line"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

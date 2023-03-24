@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/other_modules_fragment"
+    android:id="@+id/nav_module">
+
+
+    <fragment
+        android:name="com.kotlin.practice.ui.other.OtherModelsFragment"
+        android:id="@+id/other_modules_fragment"
+        android:label="@string/other_modules_page"
+        tools:layout="@layout/fragment_other_modules">
+
+
+    </fragment>
+
+
+
+
+</navigation>

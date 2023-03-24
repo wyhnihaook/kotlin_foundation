@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.kotlin.practice">
+
+    <!--    权限声明-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--    允许安装未知应用   特殊权限-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!--    不弹通知权限-->
+    <!--    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />-->
+
+    <!-- 近似定位权限，api1，如：网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 精准定位权限，api1，如：GPS定位 使用以 Android 12 或更高版本为目标平台的应用时，请求当前权限必须带上《网络定位》权限-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 后台定位权限,api29，android10新增 -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!--    应用在没有该硬件的设备上是否仍可运行。检测照相机硬件是否存在，required设置true，如果没有照相机硬件就不允许app安装，false就不影响安装-->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!--    下载http资源要添加usesCleartextTraffic属性-->
+    <application
+        android:name=".base.BaseApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.KotlinPractice"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".OtherModulesActivity" />
+        <activity android:name=".ui.theme.ThemeOperateActivity" />
+        <activity android:name=".ui.database.QueryDatabaseActivity" />
+        <activity android:name=".ui.database.OperateDatabaseActivity" />
+        <activity android:name=".ui.camera.CameraActivity" />
+        <activity android:name=".ui.download.DownloadActivity" />
+        <activity android:name=".ui.plan.FuturePlansActivity" />
+        <activity android:name=".ui.train.TrainingRecordsActivity" />
+        <activity android:name=".ui.settings.SettingsActivity" />
+        <activity android:name=".ui.about.AboutUsActivity" android:configChanges="orientation|screenSize"/>
+        <!--模拟移除第三方sdk需要初始化的ContentProvider 要移除它，需要在 App 项目中的 AndroidManifest 中声明一个相同的 Provider，并加上 tools:node="remove"。-->
+        <provider
+            android:name=".contentprovider.InitialContentProvider"
+            android:authorities="${applicationId}.contextprovider"
+            android:exported="false"
+            tools:node="remove" />
+
+
+        <!--        app startup统一管理contentProvider注册-->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <!--           tools:node="merge" 确保manifest merger tool能够正确解析冲突的节点-->
+            <!--            以上为固定写法，只是指定入口的路径变化-->
+            <meta-data
+                android:name="com.kotlin.practice.base.AppInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.kotlin.practice.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
+    </application>
+
+</manifest>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_camera"
+    app:startDestination="@id/camera_fragment">
+
+    <fragment
+        android:id="@+id/camera_fragment"
+        android:name="com.kotlin.practice.ui.camera.CameraFragment"
+        android:label="@string/camera_page"
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/camera_to_gallery_list_fragment"
+            style="@style/page_animation"
+            app:destination="@id/gallery_list_fragment" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/gallery_list_fragment"
+        android:name="com.kotlin.practice.ui.gallery.GalleryListFragment"
+        android:label="@string/gallery_list_page"
+        tools:layout="@layout/fragment_gallery_list">
+
+        <!--        跳转到ViewPager2图库，并且定位显示-->
+        <action
+            android:id="@+id/list_to_gallery_fragment"
+            style="@style/page_animation"
+            app:destination="@id/gallery_fragment" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/gallery_fragment"
+        android:name="com.kotlin.practice.ui.gallery.GalleryFragment"
+        android:label="@string/gallery_page"
+        tools:layout="@layout/fragment_gallery">
+
+        <argument
+            android:name="index"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            app:nullable="true"
+            android:name="picName"
+            android:defaultValue="@null"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:name="com.kotlin.practice.ui.detail.DetailFragment"
+        android:id="@+id/detail_fragment"
+        android:label="@string/detail_page"
+        tools:layout="@layout/fragment_detail"
+        />
+
+
+    <action
+        android:id="@+id/action_global_detailFragment"
+        style="@style/page_animation"
+        app:destination="@id/detail_fragment" />
+
+</navigation>

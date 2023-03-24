@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="text"
+            type="java.lang.String" />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_container"
+        android:background="?attr/backgroundColor">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/contentBackgroundColor"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageButton
+                android:id="@+id/back"
+                android:background="@color/transport"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_gray_back"
+                android:onClick="@{onClick}"/>
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/toolBarTitleStyle"
+                android:text="@{text}" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tool_bar"
+            style="@style/line"/>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

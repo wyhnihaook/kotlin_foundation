@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1755" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/edit_cursor.xml" value="0.1935" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/edit_select_handle.xml" value="0.1935" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/fixed_14size_with_gray_arrow.xml" value="0.1755" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/fixed_14size_with_view_data.xml" value="0.1755" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/fixed_20size_with_gray_check.xml" value="0.2195" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/fixed_35size_with_operate_database.xml" value="0.1755" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/fixed_size_with_gray_arrow.xml" value="0.1935" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/list_divider.xml" value="0.181" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/list_grid_divider.xml" value="0.1145" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/list_line_divider.xml" value="0.1935" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/list_rect_divider.xml" value="0.181" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/progress_shape.xml" value="0.307" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/selector_main_home_icon.xml" value="0.222" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/selector_main_mine_icon.xml" value="0.222" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/selector_main_tab_text_color.xml" value="0.222" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/selector_menu_icon.xml" value="0.222" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/selector_menu_mine_icon.xml" value="0.222" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/selector_menu_text_color.xml" value="0.222" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/view_background_stroke_black.xml" value="0.1935" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/view_background_style_round_10_gradient_blue.xml" value="0.2195" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/view_background_style_round_10_gradient_yellow.xml" value="0.222" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/view_background_style_round_10_white.xml" value="0.2165" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/drawable/view_progress.xml" value="0.307" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_about_us.xml" value="0.319693094629156" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_camera.xml" value="0.14666666666666667" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_download.xml" value="0.3117816091954023" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_future_plans.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_main.xml" value="0.34791666666666665" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_operate_database.xml" value="0.22" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_other_modules.xml" value="0.15572916666666667" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_query_database.xml" value="0.17239583333333333" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_settings.xml" value="0.18541666666666667" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_theme_operate.xml" value="0.16666666666666666" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/activity_train_records.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_camera.xml" value="0.17135416666666667" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_detail.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_download.xml" value="0.18541666666666667" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_gallery.xml" value="0.13333333333333333" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_gallery_list.xml" value="0.16666666666666666" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_main.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_mine.xml" value="0.30277777777777776" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_other_modules.xml" value="0.22" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_rank.xml" value="0.18541666666666667" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/fragment_theme_operate.xml" value="0.3578125" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_file_manager.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_future_plans.xml" value="0.5" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_home_banner.xml" value="0.16666666666666666" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_home_function_block.xml" value="0.16666666666666666" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_home_head_line.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_home_recommend_list.xml" value="0.6" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_other.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_photo.xml" value="0.14666666666666667" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_theme.xml" value="0.18541666666666667" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/item_user.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/layout_title.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/motion_other_header.xml" value="0.3333333333333333" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/styled_player_control.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/view_camera_container.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/view_empty.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/view_loading.xml" value="0.18541666666666667" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/view_network_state_footer.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/view_network_state_header.xml" value="0.3625" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/layout/view_no_more_footer.xml" value="0.14739583333333334" />
+        <entry key="..\:/Android Project/KotlinProject/KotlinProjectPractice/app/src/main/res/menu/main_bottom_nav_menu.xml" value="0.3625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

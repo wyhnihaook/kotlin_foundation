@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.kotlin.practice.ui.database.OperateDatabaseViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/backgroundColor">
+
+        <include
+            layout="@layout/layout_title"
+            bind:onClick="@{vm::back}"
+            bind:text="@{vm.title}" />
+
+
+        <TextView
+            android:id="@+id/insert_user"
+            style="@style/textViewStyle"
+            android:layout_marginTop="@dimen/dp_15"
+            android:background="@drawable/view_background_style_round_10_white"
+            android:onClickDebouncing="@{vm::addUser}"
+            android:text="添加人员"
+            bind:layout_constraintRight_toLeftOf="@+id/update_user"
+            bind:layout_constraintTop_toBottomOf="@+id/title_container" />
+
+        <TextView
+            android:id="@+id/update_user"
+            style="@style/textViewStyle"
+            android:layout_marginTop="@dimen/dp_15"
+            android:background="@drawable/view_background_style_round_10_white"
+            android:onClickDebouncing="@{vm::update}"
+            android:text="更新人员地址"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintRight_toRightOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/title_container" />
+
+
+        <TextView
+            android:id="@+id/delete_user"
+            style="@style/textViewStyle"
+            android:layout_marginTop="@dimen/dp_15"
+            android:background="@drawable/view_background_style_round_10_white"
+            android:onClickDebouncing="@{vm::delete}"
+            android:text="删除人员"
+            bind:layout_constraintLeft_toRightOf="@+id/update_user"
+            bind:layout_constraintTop_toBottomOf="@+id/title_container" />
+
+
+        <TextView
+            android:id="@+id/insert_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:text="*用户名称:"
+            android:textSize="@dimen/dp_16"
+            bind:layout_constraintBottom_toBottomOf="@+id/insert_name"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintTop_toTopOf="@+id/insert_name" />
+
+        <EditText
+            android:id="@+id/insert_name"
+            style="@style/editTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_15"
+            android:background="@drawable/view_background_stroke_black"
+            android:hint="请输入要插入的用户名"
+            android:hintSize="@{@dimen/sp_11}"
+            android:padding="@dimen/dp_10"
+            android:text="@={vm.editName}"
+            android:textSize="@dimen/sp_16"
+            bind:layout_constraintLeft_toRightOf="@+id/insert_name_title"
+            bind:layout_constraintRight_toRightOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/insert_user" />
+
+
+        <TextView
+            android:id="@+id/insert_gender_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:text="*用户性别:"
+            android:textSize="@dimen/dp_16"
+            bind:layout_constraintBottom_toBottomOf="@+id/insert_gender"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintTop_toTopOf="@+id/insert_gender" />
+
+        <EditText
+            android:id="@+id/insert_gender"
+            style="@style/editTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_15"
+            android:background="@drawable/view_background_stroke_black"
+            android:hint="请输入要插入的性别"
+            android:hintSize="@{@dimen/sp_11}"
+            android:padding="@dimen/dp_10"
+            android:text="@={vm.editGender}"
+            android:textSize="@dimen/sp_16"
+            bind:layout_constraintLeft_toRightOf="@+id/insert_gender_title"
+            bind:layout_constraintRight_toRightOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/insert_name" />
+
+        <TextView
+            android:id="@+id/insert_address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:text="用户地址: "
+            android:textSize="@dimen/dp_16"
+            bind:layout_constraintBottom_toBottomOf="@+id/insert_address"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintTop_toTopOf="@+id/insert_address" />
+
+        <EditText
+            android:id="@+id/insert_address"
+            style="@style/editTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_15"
+            android:background="@drawable/view_background_stroke_black"
+            android:hint="请输入要插入的地址"
+            android:hintSize="@{@dimen/sp_11}"
+            android:padding="@dimen/dp_10"
+            android:text="@={vm.editAddress}"
+            android:textSize="@dimen/sp_16"
+            bind:layout_constraintLeft_toRightOf="@+id/insert_gender_title"
+            bind:layout_constraintRight_toRightOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/insert_gender" />
+
+
+        <TextView
+            style="@style/textViewStyle"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginBottom="@dimen/dp_15"
+            android:text="@{vm.operateResult}"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintRight_toRightOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/insert_address" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

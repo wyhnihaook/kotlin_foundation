@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android = "http://schemas.android.com/apk/res/android">
+
+    <item
+        android:orderInCategory="0"
+        android:id="@+id/home_fragment"
+        android:title="首页"
+        android:icon="@drawable/selector_main_home_icon"
+        />
+
+    <item
+        android:orderInCategory="1"
+        android:id="@+id/mine_fragment"
+        android:title="我的"
+        android:icon="@drawable/selector_main_mine_icon"
+        />
+
+</menu>

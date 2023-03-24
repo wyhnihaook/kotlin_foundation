@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply from: '../config.gradle'
+
+android{
+
+    compileSdk Android.compileSdkVersion
+
+    defaultConfig {
+        minSdk Android.minSdkVersion
+        targetSdk Android.targetSdkVersion
+        versionCode Android.versionCode
+        versionName Android.versionName
+    }
+
+    signingConfigs {
+        release {
+            v1SigningEnabled true
+            v2SigningEnabled true
+            keyAlias 'iwu'
+            keyPassword '123456'
+            storeFile file('../sign.jks')
+            storePassword '123456'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    //开启DataBinding功能，使用数据绑定库，在布局中绑定UI和表达式/数据
+//    dataBinding {
+//        enabled = true
+//    }
+
+    //两个功能都开启，viewBinding是dataBinding的简洁版，去除了xml数据绑定。viewBinding是findViewById的语法糖
+    buildFeatures{
+        dataBinding = true
+        viewBinding = true
+    }
+}

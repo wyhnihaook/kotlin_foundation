@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="com.kotlin.practice.R"/>
+
+        <variable
+            name="vm"
+            type="com.kotlin.practice.util.MediaStoreFile" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--        示例：“H,16:9”代表高度比宽度为16比9，而“W,16:9”代表宽度比高度为16比9。对应尺寸必须要设置为0dp-->
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="W,1:1"
+            android:scaleType="centerCrop"
+            android:url="@{vm.uri.toString()}"
+            android:placeholderRes="@{R.drawable.ic_launcher_foreground}"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

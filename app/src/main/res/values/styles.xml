@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    使用共享元素过渡时，不得使用动画框架-->
+    <!--    如果不想让之前的页面移动，修改exitAnim和popEnterAnim移动距离为0即可-->
+    <style name="page_animation">
+        <!--        进入目的地.目标Page进入动画-->
+        <item name="enterAnim">@anim/right_in</item>
+        <!--        退出目的地.目标Page进入时，原Page退出动画-->
+        <item name="exitAnim">@anim/left_out</item>
+        <!--        通过弹出操作进入目的地，弹出操作是指在导航时从返回堆栈上弹出其他目的地的操作,原Page退出动画-->
+        <item name="popEnterAnim">@anim/left_in</item>
+        <!--        通过弹出操作退出目的地,目标Page退出时-->
+        <item name="popExitAnim">@anim/right_out</item>
+    </style>
+
+
+    <!--    BottomNavigationView文本属性设置-->
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <!--        这里的颜色可以作为着色器，对图标进行同步上色。如果颜色是单色的，使用一张图片即可。会自动着色。颜色多样就要使用图片，使用selector处理在界面显示的图片-->
+        <!--        一级图标颜色-->
+        <item name="colorPrimary">@color/light_text</item>
+        <!--        二级图标颜色-->
+        <item name="android:textColorSecondary">@color/standard_text</item>
+    </style>
+
+    <style name="BottomTabTitleActive">
+        <item name="android:textSize">@dimen/sp_13</item>
+    </style>
+
+    <style name="BottomTabTitleInActive">
+        <item name="android:textSize">@dimen/sp_11</item>
+    </style>
+
+
+    <!--    公共使用的样式抽取-->
+    <style name="line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_0_1</item>
+        <item name="android:background">?attr/dividerColor</item>
+    </style>
+
+    <!--    CollapsingToolbarLayout中文本属性设定-->
+    <style name="collapsedTitleStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="expandedTitleStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_22</item>
+    </style>
+
+    <!--    toolbar的标题属性-->
+    <style name="toolBarTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textColor">?android:textColor</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--    普通textView的显示-->
+    <style name="textViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?android:textColor</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+
+    <style name="editTextStyle">
+        <item name="android:background">@null</item>
+        <!--        光标-->
+        <item name="android:textCursorDrawable">@drawable/edit_cursor</item>
+        <!--        长按底部弹出的标识-->
+        <item name="android:textSelectHandle">@drawable/edit_select_handle</item>
+    </style>
+
+
+    <!--    水平进度条设置-->
+    <style name="horizontalProgress" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:maxHeight">@dimen/dp_30</item>
+        <item name="android:minHeight">@dimen/dp_10</item>
+        <!--        标识进度是否确定-->
+        <item name="android:indeterminateOnly">false</item>
+        <!--        进度执行动画效果-->
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+        <!--        进度条的颜色设定-->
+        <item name="android:progressDrawable">@drawable/view_progress</item>
+    </style>
+
+
+    <!--    图片的样式设定-->
+    <style name="shapeImageView">
+        <!--        rounded圆角，cut裁剪-->
+        <item name="cornerFamily">rounded</item>
+        <!--        圆角大小  可以设置50%代表圆形图片，可以单独设定上下左右的圆角大小-->
+        <item name="cornerSize">@dimen/dp_10</item>
+    </style>
+</resources>

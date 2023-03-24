@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include_title"
+        layout="@layout/layout_title" />
+
+    <!--    在视频播放的情况下渲染视频和字幕，并可以显示作为元数据包含在音频文件中的图稿-->
+    <!--    Google官方API文档弃用PlayerView使用StyledPlayerView替代-->
+    <!--    https://exoplayer.dev/doc/reference/com/google/android/exoplayer2/ui/PlayerView.html-->
+
+    <!--   exo_styled_player_view/exo_styled_player_control_view 默认ui/控制器 可以不声明-->
+    <!--    show_subtitle_button ：切换显示/隐藏字幕-->
+    <com.google.android.exoplayer2.ui.StyledPlayerView
+        android:id="@+id/player_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:player_layout_id="@layout/exo_styled_player_view"
+        app:controller_layout_id="@layout/styled_player_control"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_title"
+        app:show_shuffle_button="true"
+        app:show_subtitle_button="true" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

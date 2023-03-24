@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="HorizontalPageView">
+        <attr name="view_container_title" format="reference" />
+        <attr name="view_container_drawable" format="reference" />
+        <attr name="scrollable_distance" format="dimension" />
+        <attr name="picture_height" format="dimension" />
+        <attr name="text_picture_spacing" format="dimension" />
+        <attr name="indicator_text_spacing" format="dimension" />
+        <attr name="text_color" format="color" />
+        <attr name="text_size" format="dimension" />
+        <attr name="page_width_max_fixed_item" format="integer" />
+        <attr name="show_indicator" format="boolean" />
+
+        <!--        同步页面主题颜色-->
+        <attr name="backgroundColorPrimaryWithHorizontalPageView" format="color" />
+        <attr name="backgroundColorSecondaryWithHorizontalPageView" format="color" />
+    </declare-styleable>
+
+
+    <!--    定义xml中适配亮色和暗色的属性名称-->
+    <!--    使用方式在布局对应位置，使用?attr/backgroundColor即可，会从对应的theme中获取属性定义-->
+    <declare-styleable name="attrsAdapter">
+        <!--        默认背景颜色色值，一般用于根部局-->
+        <attr name="backgroundColor" format="color" />
+        <!--        默认布局中需要显示在界面上的布局背景色-->
+        <attr name="contentBackgroundColor" format="color" />
+        <!--        分割线的颜色-->
+        <attr name="dividerColor" format="color" />
+    </declare-styleable>
+</resources>

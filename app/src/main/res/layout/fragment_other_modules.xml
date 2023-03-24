@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.kotlin.practice.ui.other.OtherModelsViewModel" />
+    </data>
+
+    <!--    app:showPaths="true" 动画辅助线-->
+    <!--    所有子控件必须设置id-->
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/backgroundColor"
+        app:layoutDescription="@xml/motion_scene"
+        >
+
+        <ImageView
+            android:id="@+id/iv_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_home_banner2" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_main" />
+
+
+        <!--        全屏下的评论按钮-->
+        <ImageView
+            android:id="@+id/iv_comment"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginEnd="@dimen/dp_15"
+            android:src="@drawable/ic_comment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!--        名称-->
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_40"
+            android:gravity="center_vertical"
+            android:textColor="?android:textColor"
+            android:text="我是谁"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:background="@drawable/view_background_style_round_10_white"
+            android:id="@+id/attention"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_60"
+            android:textColor="?android:textColor"
+            android:gravity="center"
+            app:layout_constraintLeft_toRightOf="@+id/user_name"
+            android:text="关注"
+            />
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+
+</layout>

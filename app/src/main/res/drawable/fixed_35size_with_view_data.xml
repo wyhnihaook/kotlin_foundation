@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:width="@dimen/dp_35" android:height="@dimen/dp_35">
+        <bitmap android:src="@drawable/ic_mine_view_data"/>
+    </item>
+</layer-list>

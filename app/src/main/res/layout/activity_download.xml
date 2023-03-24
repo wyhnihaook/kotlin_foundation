@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.kotlin.practice.ui.download.DownloadViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/backgroundColor">
+
+        <include
+            layout="@layout/layout_title"
+            bind:onClick="@{vm::back}"
+            bind:text="@{vm.title}" />
+
+        <!--        显示可输入的下载url-->
+        <TextView
+            android:id="@+id/download_title"
+            style="@style/textViewStyle"
+            android:layout_margin="@dimen/dp_15"
+            android:text="下载地址"
+            android:textSize="@dimen/dp_20"
+            android:textStyle="bold"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/title_container" />
+
+        <EditText
+            android:id="@+id/edit_url"
+            style="@style/editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_margin="@dimen/dp_15"
+            android:background="@drawable/view_background_stroke_black"
+            android:hint="请输入完整的下载地址"
+            android:hintSize="@{@dimen/dp_11}"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:text="@={vm.editUrl}"
+            android:textSize="@dimen/dp_14"
+            bind:layout_constraintTop_toBottomOf="@id/download_title" />
+
+        <View
+            android:id="@+id/operate_view"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_70"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintRight_toRightOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/edit_url" />
+
+        <TextView
+            style="@style/textViewStyle"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_60"
+            android:background="@drawable/view_background_style_round_10_white"
+            android:gravity="center"
+            android:onClickDebouncing="@{vm::loadDefaultUrl}"
+            android:text="添加URL"
+            bind:layout_constraintBottom_toBottomOf="@+id/operate_view"
+            bind:layout_constraintLeft_toLeftOf="@+id/operate_view"
+            bind:layout_constraintTop_toTopOf="@+id/operate_view" />
+
+        <TextView
+            android:onClickDebouncing="@{vm::downloadUrl}"
+            style="@style/textViewStyle"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_60"
+            android:background="@drawable/view_background_style_round_10_white"
+            android:gravity="center"
+            android:id="@+id/start_download"
+            android:text="开始下载"
+            bind:layout_constraintBottom_toBottomOf="@+id/operate_view"
+            bind:layout_constraintRight_toRightOf="@+id/operate_view"
+            bind:layout_constraintTop_toTopOf="@+id/operate_view" />
+
+        <!--        下载内容-->
+
+        <TextView
+            android:id="@+id/download_progress_title"
+            style="@style/textViewStyle"
+            android:layout_margin="@dimen/dp_15"
+            android:text="下载进度"
+            android:textSize="@dimen/dp_20"
+            android:textStyle="bold"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/operate_view" />
+
+
+        <ProgressBar
+            android:layout_height="@dimen/dp_10"
+            android:id="@+id/download_progress"
+            tools:progress="66"
+            android:progress="@{vm.downloadProgress}"
+            style="@style/horizontalProgress"
+            android:layout_margin="@dimen/dp_15"
+            bind:layout_constraintTop_toBottomOf="@+id/download_progress_title"
+            android:layout_width="match_parent" />
+
+        <TextView
+            android:id="@+id/download_status"
+            android:layout_marginTop="@dimen/dp_15"
+            style="@style/textViewStyle"
+            android:text="@{vm.downloadStatus}"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintRight_toRightOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/download_progress"/>
+
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_15"
+            style="@style/textViewStyle"
+            android:background="@drawable/view_background_style_round_10_white"
+            android:text="取消任务"
+            android:onClickDebouncing="@{vm::removeTask}"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintRight_toRightOf="parent"
+            bind:layout_constraintTop_toBottomOf="@+id/download_status"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
