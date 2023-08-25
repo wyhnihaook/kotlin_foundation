@@ -66,8 +66,10 @@ ext{
             cameraxView : "androidx.camera:camera-view:${DependVersion.cameraxVersion}",
 
             //分页管理
-           paging : "androidx.paging:paging-runtime:${DependVersion.pagingVersion}"
+           paging : "androidx.paging:paging-runtime:${DependVersion.pagingVersion}",
 
+
+           gson : "com.google.code.gson:gson:2.8.5",
 
     ]
 

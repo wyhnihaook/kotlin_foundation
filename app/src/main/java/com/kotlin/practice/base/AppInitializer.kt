@@ -1,17 +1,22 @@
 package com.kotlin.practice.base
 
 import android.content.Context
+import android.os.Environment
 import android.util.Log
 import androidx.startup.Initializer
 import com.kotlin.practice.BuildConfig
 import com.kotlin.practice.R
 import com.kotlin.practice.contentprovider.initContentProviderContext
 import com.kotlin.practice.db.AppDatabase
+import com.kotlin.practice.helper.webview.WebViewConfig
+import com.kotlin.practice.helper.webview.WebViewConstants.Companion.WebCacheDataList
 import com.kotlin.practice.util.*
 import com.scwang.smart.refresh.header.BezierRadarHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -73,11 +78,20 @@ class AppInitializer : Initializer<Unit> {
     //1.初始化操作，返回的初始化结果会被缓存，不会重复执行
     override fun create(context: Context) {
         logError("执行初始化信息")
+        //初始化WebViewConfig配置
+        //私有空间，随着app的卸载而消失->不需要权限
+        WebViewConfig.resourceCacheDir = context.cacheDir?.absolutePath
+        //功能区域的内容，不会随着app卸载而消失->需要权限
+//        WebViewConfig.resourceCacheDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)?.absolutePath
+
+        WebViewConfig.resourceCacheDirName = "web_cache_byt"
 
         //注意：在清单文件移除ContentProvider的初始化，需要要将将原有的ContentProvider初始化context的方法放到这里
         initContentProviderContext(context)
 
         initThemeMode(context)
+
+        initWebViewCache()
     }
 
     //2.当前的初始化是否还依赖于其他的Initializer，如果有的话，就在这里进行配置，App Startup会保证先初始化依赖的Initializer，然后才会初始化当前，这样就可以设置初始化顺序了
@@ -105,6 +119,24 @@ class AppInitializer : Initializer<Unit> {
             }
         }
     }
+
+
+    /**初始化全局本地缓存的WebView的信息*/
+    private fun initWebViewCache() {
+        //需要判断当前是否有存在的深色/亮色模式
+        GlobalScope.launch {
+            withContext(Dispatchers.IO) {
+                var db = AppDatabase.getInstance()
+                val webCacheList = db.webDao().getAll()
+                //获取本地数据之后进行静态存储
+                WebCacheDataList.clear()
+                WebCacheDataList.addAll(webCacheList)
+
+                logError("WebCacheDataList:${WebCacheDataList.count()}")
+            }
+        }
+    }
+
 }
 
 

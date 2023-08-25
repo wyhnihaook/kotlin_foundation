@@ -41,6 +41,11 @@
             android:id="@+id/home_to_training_records_activity"
             />
 
+        <action
+            style="@style/page_animation"
+            android:id="@+id/home_to_webview_activity"
+            app:destination="@+id/webview_activity"
+            />
 
 
     </fragment>
@@ -155,5 +160,11 @@
         android:name="com.kotlin.practice.ui.settings.SettingsActivity"
         tools:layout="@layout/activity_settings"
         android:label="@string/file_manager_page"/>
+
+    <activity
+        android:id="@+id/webview_activity"
+        android:name="com.kotlin.practice.ui.webview.WebViewCommonActivity"
+        tools:layout="@layout/activity_webview_common"
+        android:label="@string/webview_page"/>
 
 </navigation>

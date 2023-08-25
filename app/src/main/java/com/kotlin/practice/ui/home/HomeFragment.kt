@@ -169,6 +169,7 @@ class HomeFragment :BaseFragment<FragmentHomeBinding,HomeViewModel>(){
                     holder.binding.banner.setOnBannerListener{
                         data,position->
                         logError("点击轮播图：$position")
+                        binding.pager.findNavController().navigate(R.id.home_to_webview_activity)
                     }
                 }
                 is HeadLineViewHolder->{

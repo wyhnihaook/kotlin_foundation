@@ -60,6 +60,7 @@
         <activity android:name=".ui.plan.FuturePlansActivity" />
         <activity android:name=".ui.train.TrainingRecordsActivity" />
         <activity android:name=".ui.settings.SettingsActivity" />
+        <activity android:name=".ui.webview.WebViewCommonActivity" />
         <activity android:name=".ui.about.AboutUsActivity" android:configChanges="orientation|screenSize"/>
         <!--模拟移除第三方sdk需要初始化的ContentProvider 要移除它，需要在 App 项目中的 AndroidManifest 中声明一个相同的 Provider，并加上 tools:node="remove"。-->
         <provider

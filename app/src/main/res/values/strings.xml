@@ -35,6 +35,7 @@
 
     <string name="file_manager_page">文件管理器</string>
 
+    <string name="webview_page">网址</string>
     <!--    拼接名称-->
     <string name="artists_name">作者：</string>
 

@@ -1,0 +1,24 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  height: 100vh;
+}
+
+@charset "UTF-8";
+html,
+body .app {
+  color: #333333;
+  font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
+  background-color: #fff; }
+
+/* 刘海屏安全区域 */
+.layout-content {
+  padding-bottom: 1.33333rem; }
+

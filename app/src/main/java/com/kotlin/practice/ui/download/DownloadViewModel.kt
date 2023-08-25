@@ -102,6 +102,9 @@ class DownloadViewModel:BaseViewModel() {
         downloadStatus.postValue("下载状态：已取消")
 
         taskId = -1L
+
+//        SearchArticelViewController 文章搜索
+        //SearchProductViewController 产品搜索
     }
 }
 

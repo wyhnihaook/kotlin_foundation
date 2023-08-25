@@ -1,6 +1,5 @@
 package com.kotlin.practice.util
 
-import android.app.Activity
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,12 +10,10 @@ import android.database.ContentObserver
 import android.database.Cursor
 import android.net.Uri
 import android.os.Build
-import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
 import androidx.core.net.toFile
 import com.kotlin.practice.base.BaseApp
-import java.io.File
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 
