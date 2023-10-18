@@ -123,15 +123,23 @@ class WebViewSession(context: Context, private val config: WebViewConfig) :
         //1.2根据当前url获取对应的域名信息（host）进行拼接到src，作为下载资源的绝对路径  -- 参考VasSonic SonicSession中handleFlow_Connection初始化进行html同步
         //注意：耗时操作放到子线程处理
 
+        //从数据库中获取eTag标识
+        var eTag = ""
+        if(webCache!=null){
+            eTag = webCache!!.eTag
+        }
+
         WebViewSessionThreadPool.postTask(Runnable {
             //匹配下载内容一：<link href=""   匹配下载内容二：<script ... src=" "
             var webViewHtmlServer = WebViewHtmlServer(
                 config.htmlAssetUrl +config.extraContent+ config.htmlCompletion,
-                config.matches
+                config.matches,eTag
             )
             webViewHtmlServer.connect()
 
             //连接内容成功才需要获取最新的html信息并做后续操作
+            logError("网络请求code:"+webViewHtmlServer.responseCode)
+
             if (HttpURLConnection.HTTP_OK == webViewHtmlServer.responseCode) {
                 //这里需要判断是否和本地资源内容一致，如果一致就不做处理，如果不一致就需要本地数据库存储最新的内容，并且去下载资源文件
                 //1.先尝试读取数据库中存储的路径信息对应的html内容（应用启动时，就获取的静态内容），如果获取不到再去读取本地缓存的信息 （扩展实现方法，提供本地读取实现）
@@ -139,7 +147,8 @@ class WebViewSession(context: Context, private val config: WebViewConfig) :
 
                 //是否匹配，这里先固定不匹配，进行后续操作
                 var isMatch = htmlString == webViewHtmlServer.serverRsp
-
+                //数据存储对应的eTag信息
+                var eTag = webViewHtmlServer.eTagStorage
 
                 if (isMatch) {
                     //html中匹配内容完全一致，这里就不做处理
@@ -180,6 +189,7 @@ class WebViewSession(context: Context, private val config: WebViewConfig) :
                             //html内容和需要下载的链接都要变化
                             webCache!!.htmlContent = webViewHtmlServer.serverRsp!!
                             webCache!!.linkList = preloadLinks
+                            webCache!!.eTag = eTag?:""
 
                             db.webDao().update(webCache!!)
                         } else {
@@ -188,7 +198,8 @@ class WebViewSession(context: Context, private val config: WebViewConfig) :
                                 config.htmlAssetUrl,
                                 webViewHtmlServer.serverRsp!!,
                                 config.extraContent,
-                                preloadLinks
+                                preloadLinks,
+                                eTag?:""
                             )
 
                             db.webDao().insertAll(webCache!!)

@@ -45,7 +45,9 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
     private var session: WebViewSession? = null
 
     //测试环境慢
-    private val url:String = "https://h5-test.dby.cn/product-comparison/#/home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3MjcwNjU2MjU4Nzg4OTY2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiY2JiM2ZkMTAyOTk4NGJlNDlkOGQ4NDk4OWY3NjcxZjAifQ.hmN7Lhr-vUWCtJnQmQGZ7bf4-39by_2dj5Svy1Ubj4A&empId=81270"
+//    private val url:String = "https://h5-test.dby.cn/product-comparison/#/home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3MjcwNjU2MjU4Nzg4OTY2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiY2JiM2ZkMTAyOTk4NGJlNDlkOGQ4NDk4OWY3NjcxZjAifQ.hmN7Lhr-vUWCtJnQmQGZ7bf4-39by_2dj5Svy1Ubj4A&empId=81270"
+
+    private val url:String = "http://47.111.119.136:7799/"
 
     //正式环境：快点的
 //    private val url:String = "https://h5.dby.cn/product-comparison/#/home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3NTI0MzIzOTI2OTIwODA2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiYWJkNjIzMmYyOWQ4NDA3NDlhY2ZkZmU1NjQwNzcyNDUifQ.vcs3v4uYYxscpXmHFhcKk40gwCf2CPKJGwmevAXpqPY&empId=1593"
@@ -230,7 +232,7 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
 
         webSettings.useWideViewPort = true
         webSettings.javaScriptCanOpenWindowsAutomatically = true
-        webSettings.cacheMode = WebSettings.LOAD_NO_CACHE
+        webSettings.cacheMode = WebSettings.LOAD_DEFAULT
         webSettings.setAppCacheEnabled(false)
         webSettings.domStorageEnabled = true
         webSettings.allowContentAccess = true // 是否可访问Content Provider的资源，默认值 true

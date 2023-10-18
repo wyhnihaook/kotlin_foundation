@@ -44,6 +44,8 @@ class WebViewUtils {
 
                 return false
             }
+            //保存文件时，
+
 //            if (headers != null && headers.isNotEmpty()&& !WebViewHelper.writeFile(
 //                    WebViewHelper.convertHeadersToString(
 //                        headers
@@ -70,13 +72,6 @@ class WebViewUtils {
             logError("${"saveSonicResourceData resourceUrl = $resourceUrl, resourceSha1 = $resourceSha1, resourceSize = $resourceSize"}")
 
             //保存到本地数据库信息
-//            val resourceData: SonicResourceDataHelper.ResourceData = ResourceData()
-//            resourceData.resourceId = com.tencent.sonic.sdk.SonicUtils.getMD5(resourceUrl)
-//            resourceData.resourceSha1 = resourceSha1
-//            resourceData.resourceSize = resourceSize
-//            com.tencent.sonic.sdk.SonicUtils.handleResourceExpireTime(resourceUrl, resourceData)
-//            resourceData.lastUpdateTime = System.currentTimeMillis()
-//            SonicResourceDataHelper.saveResourceData(resourceData.resourceId, resourceData)
         }
 
         fun getSHA1(content: String): String? {
@@ -86,7 +81,7 @@ class WebViewUtils {
         }
 
         fun getSHA1(contentBytes: ByteArray?): String? {
-            return if (contentBytes == null || contentBytes.size <= 0) {
+            return if (contentBytes == null || contentBytes.isEmpty()) {
                 ""
             } else try {
                 val sha1 = MessageDigest.getInstance("SHA1")
@@ -249,6 +244,9 @@ class WebViewUtils {
          *
          * @param srcHeaders      The source headers
          * @return The headers of sessionId
+         *
+         * 使用请求头携带信息来标识html是否修改，返回304则直接使用数据库/本地html文件，如果是200就需要重新获取字符串比对后使用（理论上一定不为同一个数据）
+         * 每次请求从请求头中获取同步到数据库中
          */
         fun getFilteredHeaders(srcHeaders: Map<String, List<String>>?): HashMap<String, String> {
             val headers = HashMap<String, String>()

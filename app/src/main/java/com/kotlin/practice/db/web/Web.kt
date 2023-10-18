@@ -26,7 +26,10 @@ data class Web(
     var extraContent:String,
 
     @ColumnInfo(name = "linkList")
-    var linkList:MutableList<String> // ！！！Room不支持直接存储列表的功能！！！！需要借助转换器，在存储时转化为字符串，在获取时转化为列表
+    var linkList:MutableList<String>, // ！！！Room不支持直接存储列表的功能！！！！需要借助转换器，在存储时转化为字符串，在获取时转化为列表
+
+    @ColumnInfo(name = "eTag", defaultValue = "")
+    var eTag:String
 ) {
-    constructor(url: String,htmlContent:String,extraContent:String,linkList: MutableList<String>):this(0,url,htmlContent,extraContent,linkList)
+    constructor(url: String,htmlContent:String,extraContent:String,linkList: MutableList<String>,eTag: String):this(0,url,htmlContent,extraContent,linkList,eTag)
 }

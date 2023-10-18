@@ -21,7 +21,7 @@ import java.util.zip.GZIPInputStream
  * 创建者:翁益亨
  * 创建日期:2023/8/23 10:27
  */
-class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayList<String>) {
+class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayList<String>,private val eTagData:String) {
 
     //建立网络连接的对象
     private var connectionImpl: URLConnection? = null
@@ -29,6 +29,8 @@ class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayLi
     private val outputStream = ByteArrayOutputStream()
 
     var serverRsp:String? = null
+
+    var eTagStorage:String? = null
 
 
     init {
@@ -106,6 +108,13 @@ class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayLi
             connection!!.setRequestProperty("Accept-Language", "zh-CN,zh;")
 
             //可扩展其他请求额外参数
+            //添加请求返回的超时标识，用来返回304不需要请求网络资源的信息
+            //响应头必须包含以下信息 If-None-Match对应一开始返回的ETag
+
+            //获取请求头的ETag
+            //再次发起请求时请求头携带If-None-Match
+            //存储在数据库中的eTag数据
+            connection!!.setRequestProperty("If-None-Match", "\""+eTagData+"\"")
 
             return true
         }
@@ -122,7 +131,25 @@ class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayLi
             return resultCode // error case
         }
 
+        //正常请求获取200的情况
         //可选择性补充responseCode的返回处理内容
+        var responseFiledHeaders = getResponseHeaderFields()
+
+        if(responseFiledHeaders != null){
+
+           var eTags = responseFiledHeaders.get("ETag")
+           if(!eTags.isNullOrEmpty()){
+               //不是空的情况，获取角标0的数据即可
+               var eTag = eTags[0]
+               if(eTags[0].lowercase().startsWith("w/")){
+                   eTag = eTag.lowercase().replace("w/","")
+               }
+
+               //根据网络请求展示不能取消双引号： "，在后续参数上添加即可
+               eTag = eTag.replace("\"", "")
+               eTagStorage = eTag
+           }
+        }
 
         //连接正常，尝试获取返回结果
          readServerResponse()
@@ -175,6 +202,20 @@ class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayLi
 
         return true
     }
+
+    //获取请求中的响应头信息，主要是需要获取ETag
+    private fun getResponseHeaderFields():Map<String,List<String>>?{
+        if(null == connectionImpl){
+            return null
+        }
+
+        return try {
+            connectionImpl!!.headerFields
+        }catch (e:Exception){
+            HashMap<String,List<String>>()
+        }
+    }
+
 
     //获取页面中需要记载的href以及src内容
     fun getResponseLoadLink(response:String):ArrayList<String>{

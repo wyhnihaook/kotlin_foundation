@@ -5,6 +5,7 @@ import android.os.HandlerThread
 import android.os.Message
 import android.text.TextUtils
 import android.webkit.WebResourceResponse
+import com.kotlin.practice.helper.webview.WebViewConfig
 import com.kotlin.practice.helper.webview.WebViewSession
 import com.kotlin.practice.helper.webview.WebViewSessionThreadPool
 import com.kotlin.practice.helper.webview.WebViewUtils
@@ -178,10 +179,8 @@ class WebViewDownloadEngine(cache: WebViewDownloadCache?) :Handler.Callback{
         // no cache then start download
         task.mIpAddress = ipAddress
         task.mCookie = cookie
-        if (mNumOfDownloadingTask!!.get() < 3
+        if (mNumOfDownloadingTask!!.get() < WebViewConfig.maxDownloadCount
             //同一时间最大下载个数
-//            SonicEngine.getInstance()
-//                .getConfig().SONIC_MAX_NUM_OF_DOWNLOADING_TASK
         ) {
             startDownload(task)
         } else {

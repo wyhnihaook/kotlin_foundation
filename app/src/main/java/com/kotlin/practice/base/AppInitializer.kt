@@ -79,7 +79,7 @@ class AppInitializer : Initializer<Unit> {
     override fun create(context: Context) {
         logError("执行初始化信息")
         //初始化WebViewConfig配置
-        //私有空间，随着app的卸载而消失->不需要权限
+        //私有空间，随着app的卸载而消失->不需要权限（系统设置中可以手动清除缓存内容）
         WebViewConfig.resourceCacheDir = context.cacheDir?.absolutePath
         //功能区域的内容，不会随着app卸载而消失->需要权限
 //        WebViewConfig.resourceCacheDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)?.absolutePath

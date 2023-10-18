@@ -28,11 +28,11 @@ import com.kotlin.practice.db.web.WebDao
  * 创建者:翁益亨
  * 创建日期:2023/1/5 16:30
  */
-@Database(entities = [User::class, Book::class,AppTheme::class, Web::class],version = 9,
+@Database(entities = [User::class, Book::class,AppTheme::class, Web::class],version = 10,
 
     exportSchema=true
     ,autoMigrations = [
-        AutoMigration(from = 8, to = 9),
+        AutoMigration(from = 9, to = 10),
     ]
 
 )
@@ -59,7 +59,7 @@ abstract class AppDatabase: RoomDatabase() {
             //第二次打开识别到已经存在数据库内容，就只会执行onOpen回调
             return Room
                 .databaseBuilder(context,AppDatabase::class.java,databaseName)
-                .addMigrations(MIGRATION_1_2,MIGRATION_7_8,MIGRATION_8_9)
+                .addMigrations(MIGRATION_1_2,MIGRATION_7_8,MIGRATION_8_9,MIGRATION_9_10)
 //                .fallbackToDestructiveMigration()//每次升级时，删除原有数据库内容
                 .addCallback(object :RoomDatabase.Callback(){
                     override fun onCreate(db: SupportSQLiteDatabase) {
@@ -102,6 +102,11 @@ abstract class AppDatabase: RoomDatabase() {
         val MIGRATION_8_9 = Migration(8,9){
                 database->
             database.execSQL("ALTER TABLE web add column extraContent TEXT NOT NULL DEFAULT ''")//NOT NULL DEFAULT ''  标识当前内容存储时不能为空
+        }
+
+        val MIGRATION_9_10 = Migration(9,10){
+                database->
+            database.execSQL("ALTER TABLE web add column eTag TEXT NOT NULL DEFAULT ''")//NOT NULL DEFAULT ''  标识当前内容存储时不能为空
         }
 
     }
