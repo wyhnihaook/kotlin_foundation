@@ -125,20 +125,20 @@ class WebViewSession(context: Context, private val config: WebViewConfig) :
 
         //从数据库中获取eTag标识
         var eTag = ""
-        if(webCache!=null){
+        if (webCache != null) {
             eTag = webCache!!.eTag
         }
 
         WebViewSessionThreadPool.postTask(Runnable {
             //匹配下载内容一：<link href=""   匹配下载内容二：<script ... src=" "
             var webViewHtmlServer = WebViewHtmlServer(
-                config.htmlAssetUrl +config.extraContent+ config.htmlCompletion,
-                config.matches,eTag
+                config.htmlAssetUrl + config.extraContent + config.htmlCompletion,
+                config.matches, eTag
             )
             webViewHtmlServer.connect()
 
             //连接内容成功才需要获取最新的html信息并做后续操作
-            logError("网络请求code:"+webViewHtmlServer.responseCode)
+            logError("网络请求code:" + webViewHtmlServer.responseCode)
 
             if (HttpURLConnection.HTTP_OK == webViewHtmlServer.responseCode) {
                 //这里需要判断是否和本地资源内容一致，如果一致就不做处理，如果不一致就需要本地数据库存储最新的内容，并且去下载资源文件
@@ -160,15 +160,41 @@ class WebViewSession(context: Context, private val config: WebViewConfig) :
                     //针对app中的url规则，域名会存在/#/分割标识，作为下载的链接
                     var preloadLinks: ArrayList<String> = ArrayList()
 
+                    //手动判断类型
+                    var matches = ArrayList<String>()
+                    //是否时普通规则匹配
+                    var normalMatch =
+                        webViewHtmlServer.serverRsp!!.contains("href=\"") || webViewHtmlServer.serverRsp!!.contains(
+                            "src=\""
+                        )
+
+                    if (config.matches.isEmpty()) {
+
+                        if (normalMatch) {
+                            //匹配规则，由外部传递
+                            matches.add("href=\"([^\"]*)\"")
+                            matches.add("src=\"([^\"]*)\"")
+                        } else {
+                            //当不存在""将资源文件的相对路径包裹时，采用以下方案
+                            matches.add("href=[^\">\\s]*")
+                            matches.add("src=[^\">\\s]*")
+                        }
+
+                    }else{
+                        matches = config.matches
+                    }
+
+
                     //1.网络获取的html信息存储
                     //2.构建当前需要预加载的资源文件
-                    for (match: String in config.matches) {
+                    for (match: String in matches) {
                         val regex = Regex(match)
 
                         regex.findAll(webViewHtmlServer.serverRsp!!.trim()).map {
+                            logError("value:" + it.value)
                             val content = it.value.substring(
-                                it.value.indexOf("\"") + 1,
-                                it.value.lastIndexOf("\"")
+                                it.value.indexOf(if (normalMatch) "\"" else "=") + 1,
+                                if (normalMatch) it.value.lastIndexOf("\"") else it.value.length
                             )
                             if (content.endsWith(".js") || content.endsWith(".css")) {
                                 preloadLinks.add(config.htmlAssetUrl + content)
@@ -189,7 +215,7 @@ class WebViewSession(context: Context, private val config: WebViewConfig) :
                             //html内容和需要下载的链接都要变化
                             webCache!!.htmlContent = webViewHtmlServer.serverRsp!!
                             webCache!!.linkList = preloadLinks
-                            webCache!!.eTag = eTag?:""
+                            webCache!!.eTag = eTag ?: ""
 
                             db.webDao().update(webCache!!)
                         } else {
@@ -199,7 +225,7 @@ class WebViewSession(context: Context, private val config: WebViewConfig) :
                                 webViewHtmlServer.serverRsp!!,
                                 config.extraContent,
                                 preloadLinks,
-                                eTag?:""
+                                eTag ?: ""
                             )
 
                             db.webDao().insertAll(webCache!!)
@@ -242,20 +268,22 @@ class WebViewSession(context: Context, private val config: WebViewConfig) :
     }
 
     //5.绑定当前的WebView，将加载Url逻辑迁移到当前内容
-    fun bindWebViewAndLoad(webView: WebView){
-        if(loadLocalAssetHtml){
-            webView.loadUrl("file:///android_asset/${config.localHtmlAssetPath}"+config.extraContent)
-        }else{
-            if(webCache!=null){
+    fun bindWebViewAndLoad(webView: WebView) {
+        if (loadLocalAssetHtml) {
+            webView.loadUrl("file:///android_asset/${config.localHtmlAssetPath}" + config.extraContent)
+        } else {
+            if (webCache != null) {
                 //存在网络缓存，直接通过缓存静态数据进行展示 存在 /#/ 的时候需要携带，不然页面加载会再
                 //htmlContent中的资源地址要根据baseUrl获取完整网络资源地址
                 //存在缓存才需要进行添加，因为本地内容无需通过链接检查是否下载，只有缓存内容才需要（可在内存中被删除）
                 resourceDownloaderEngine!!.addSubResourcePreloadTask(webCache!!.linkList)
 
-                webView.loadDataWithBaseURL(webCache!!.url+webCache!!.extraContent,
-                    webCache!!.htmlContent,"text/html; charset=utf-8","UTF-8",null)
-            }else{
-                webView.loadUrl(config.htmlAssetUrl +config.extraContent+ config.htmlCompletion)
+                webView.loadDataWithBaseURL(
+                    webCache!!.url + webCache!!.extraContent,
+                    webCache!!.htmlContent, "text/html; charset=utf-8", "UTF-8", null
+                )
+            } else {
+                webView.loadUrl(config.htmlAssetUrl + config.extraContent + config.htmlCompletion)
             }
         }
     }

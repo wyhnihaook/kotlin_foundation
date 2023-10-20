@@ -45,9 +45,9 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
     private var session: WebViewSession? = null
 
     //测试环境慢
-//    private val url:String = "https://h5-test.dby.cn/product-comparison/#/home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3MjcwNjU2MjU4Nzg4OTY2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiY2JiM2ZkMTAyOTk4NGJlNDlkOGQ4NDk4OWY3NjcxZjAifQ.hmN7Lhr-vUWCtJnQmQGZ7bf4-39by_2dj5Svy1Ubj4A&empId=81270"
+    private val url:String = "https://h5-dev.dby.cn/product-comparison/#/home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3MjcwNjU2MjU4Nzg4OTY2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiY2JiM2ZkMTAyOTk4NGJlNDlkOGQ4NDk4OWY3NjcxZjAifQ.hmN7Lhr-vUWCtJnQmQGZ7bf4-39by_2dj5Svy1Ubj4A&empId=81270"
 
-    private val url:String = "http://47.111.119.136:7799/"
+//    private val url:String = "http://47.111.119.136:7799/"
 
     //正式环境：快点的
 //    private val url:String = "https://h5.dby.cn/product-comparison/#/home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3NTI0MzIzOTI2OTIwODA2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiYWJkNjIzMmYyOWQ4NDA3NDlhY2ZkZmU1NjQwNzcyNDUifQ.vcs3v4uYYxscpXmHFhcKk40gwCf2CPKJGwmevAXpqPY&empId=1593"
@@ -77,17 +77,12 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
         //vassnoic中sonicSession的runSonicFlow方法中初始化获取html信息并获取对应html中的需要异步下载的资源文件信息
         //handleFlow_Connection建立连接获取需要缓存的数据
 
-        var matches = ArrayList<String>()
-        //匹配规则，由外部传递
-        matches.add("href=\"([^\"]*)\"")
-        matches.add("src=\"([^\"]*)\"")
 
         var config = WebViewConfig()
         config.htmlAssetUrl = "https://h5-test.dby.cn/product-comparison/"
         config.extraContent = "#/"
         config.htmlCompletion = "home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3MjcwNjU2MjU4Nzg4OTY2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiY2JiM2ZkMTAyOTk4NGJlNDlkOGQ4NDk4OWY3NjcxZjAifQ.hmN7Lhr-vUWCtJnQmQGZ7bf4-39by_2dj5Svy1Ubj4A&empId=81270"
         config.localHtmlAssetPath = "web/index.html"//注意获取的相对路径前面不能添加 斜杆。例如：/web/index.html
-        config.matches = matches
 
         session = WebViewSession(this@WebViewCommonActivity,config)
         session!!.readyCache()

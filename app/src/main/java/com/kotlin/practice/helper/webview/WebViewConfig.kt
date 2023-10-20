@@ -35,11 +35,16 @@ class WebViewConfig {
 
     /**
      * 正则表达式内容，用于获取html中的需要下载的资源相对地址
+     * 默认当前匹配规则由内部实现
      * 示例：
      * "href=\"([^\"]*)\""
      * "src=\"([^\"]*)\""
      * 从html字符串中获取href/src中引用的相对路径，结合htmlAssetUrl域名拼接成绝对路径进行资源下载
      * 不管如何匹配，获取时：从第一个"后，最后一个"前截取出完整的相对资源地址信息
+     *
+     * href=[^">\s]*
+     * src=[^">\s]*
+     * 遇到"或者>或者空格就截止，适用于href=static/css/chunk-vantUI~cff3c281.c93b114f.css情况（较少）
      */
     var matches = ArrayList<String>()
 
