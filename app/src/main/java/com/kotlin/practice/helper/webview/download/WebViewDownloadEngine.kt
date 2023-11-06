@@ -215,7 +215,6 @@ class WebViewDownloadEngine(cache: WebViewDownloadCache?) :Handler.Callback{
      * @param session current sonic session
      * @return Return the data to kernel
      */
-    private val lock = Object()
 
     fun onRequestSubResource(url: String
                              , session: WebViewSession
@@ -234,16 +233,6 @@ class WebViewDownloadEngine(cache: WebViewDownloadCache?) :Handler.Callback{
                 ) {
                     return null
                 } else {
-                    if (subRes.mInputStream == null) {
-                        synchronized(lock) {
-                            try {
-                                //锁定处理的问题？？？？ todo
-                                lock.wait(3 * 1000)
-                            } catch (e: InterruptedException) {
-                                logError("${"session onRequestSubResource error: " + e.message}")
-                            }
-                        }
-                    }
                     if (subRes.mInputStream == null) {
                         return null
                     }

@@ -24,6 +24,7 @@ import com.kotlin.practice.databinding.ActivityWebviewCommonBinding
 import com.kotlin.practice.helper.webview.WebViewConfig
 import com.kotlin.practice.helper.webview.WebViewSession
 import com.kotlin.practice.util.logError
+import java.io.ByteArrayInputStream
 
 
 /**
@@ -40,12 +41,15 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
     private val mViewModel by viewModels<WebViewCommonViewModel>()
 
     //webview初始化
-    private var wvContent:WebView? = null
+    private var wvContent: WebView? = null
 
     private var session: WebViewSession? = null
 
     //测试环境慢
-    private val url:String = "https://h5-dev.dby.cn/product-comparison/#/home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3MjcwNjU2MjU4Nzg4OTY2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiY2JiM2ZkMTAyOTk4NGJlNDlkOGQ4NDk4OWY3NjcxZjAifQ.hmN7Lhr-vUWCtJnQmQGZ7bf4-39by_2dj5Svy1Ubj4A&empId=81270"
+    private val loadUrl:String = "https://h5-test.dby.cn/product-comparison/#/home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3MjcwNjU2MjU4Nzg4OTY2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiY2JiM2ZkMTAyOTk4NGJlNDlkOGQ4NDk4OWY3NjcxZjAifQ.hmN7Lhr-vUWCtJnQmQGZ7bf4-39by_2dj5Svy1Ubj4A&empId=81270"
+
+//    private val url: String =
+//        "https://h5-dev.dby.cn/product-comparison/#/home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3MjcwNjU2MjU4Nzg4OTY2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiY2JiM2ZkMTAyOTk4NGJlNDlkOGQ4NDk4OWY3NjcxZjAifQ.hmN7Lhr-vUWCtJnQmQGZ7bf4-39by_2dj5Svy1Ubj4A&empId=81270"
 
 //    private val url:String = "http://47.111.119.136:7799/"
 
@@ -79,13 +83,12 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
 
 
         var config = WebViewConfig()
-        config.htmlAssetUrl = "https://h5-test.dby.cn/product-comparison/"
-        config.extraContent = "#/"
-        config.htmlCompletion = "home?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Q29kZSI6IjM3MjcwNjU2MjU4Nzg4OTY2NCIsImxvZ2luQ2hhbm5lbCI6IjEiLCJ0b2tlblZlcnNpb24iOiJqd3QtdjEiLCJyYW5kb21VdUlkIjoiY2JiM2ZkMTAyOTk4NGJlNDlkOGQ4NDk4OWY3NjcxZjAifQ.hmN7Lhr-vUWCtJnQmQGZ7bf4-39by_2dj5Svy1Ubj4A&empId=81270"
+        //加载优先级由内部定义
+        config.htmlAssetUrl = loadUrl
         config.localHtmlAssetPath = "web/index.html"//注意获取的相对路径前面不能添加 斜杆。例如：/web/index.html
 
-        session = WebViewSession(this@WebViewCommonActivity,config)
-        session!!.readyCache()
+        session = WebViewSession(this@WebViewCommonActivity, config)
+//        session!!.readyCache()
 
         //初始化绑定下载资源引擎和webView，只要监测到webView == null之后，页面就是被回收阶段
         //所有的资源都是要通过下载到本地缓存的方式存储，这里只需要在destroy中移除任务即可，其他情况就需要下载资源，下载完毕之后通知当前页面。能正常展示了
@@ -94,10 +97,9 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
         resetWebView()
         //800ms
         //通过readyCache缓存数据 500ms -- 采用该实现方案
-//        wvContent!!.loadUrl(url)
+//        wvContent!!.loadUrl(loadUrl)
         //判断session是否存在，采用loadUrl或者bindWebView
         session!!.bindWebViewAndLoad(wvContent!!)
-
 
 
         //加载本地缓存的html信息(不包含本地资源文件)，目前没有实质性的时间差距，都需要1s加载（存在缓存js的内容）
@@ -165,7 +167,7 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
 
         val endTime = System.currentTimeMillis()
 
-        logError("结束花费时间：${endTime-startTime}")
+        logError("结束花费时间：${endTime - startTime}")
 
 
     }
@@ -240,7 +242,7 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
 
         wvContent!!.addJavascriptInterface(createJSInterface(), "NativeCaller")
 
-        wvContent!!.webChromeClient = object :WebChromeClient(){
+        wvContent!!.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
                 logError("当前加载进度：$newProgress")
@@ -270,6 +272,14 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
             }
 
 
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                logError("url reloading:"+request!!.url.toString())
+                return super.shouldOverrideUrlLoading(view, request)
+            }
+
             @TargetApi(21)
             override fun shouldInterceptRequest(
                 view: WebView,
@@ -279,13 +289,32 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
             }
 
             override fun shouldInterceptRequest(view: WebView, url: String): WebResourceResponse? {
-                logError("----需要下载的资源文件：$url")
+                //同步阻塞内容，通过当前输出线程名称发现执行WebView资源加载的请求是TaskSchedulerFo。不是主线程的main
+                //所以这边可以自行发起请求阻塞等待结果内容返回并保存操作
+//                logError("Thread.currentThread().name:"+Thread.currentThread().name)
+                logError("----开始下载需要下载的资源文件：$url")
+
                 return if (session != null) {
+                    if(url == loadUrl){
+                        //从session的返回中进行匹配对应的html资源（永远保持最新）
+                        //这里一定存在最新的资源信息
+                        if(session!!.htmlString != null){
+                            return  WebResourceResponse(
+                                "text/html",
+                                "utf-8",
+                                session!!.htmlString!!.byteInputStream()
+                            )
+                        }
+                        return null
+                    }
+
                     //测试环境中，本地文件读取->https://h5-test.dby.cn/product-comparison/static/js/chunk-libs.0134cd5df34111674845.js) 过大 10MB
-                    //导致响应过慢
-                 val  response: WebResourceResponse? =   session!!.requestResource(url)
-                 logError("-----缓存资源同步设置:$response")
-                 response
+                    //存在session的情况，优先将获取资源的任务添加到列表中
+                    session!!.addLoadCacheAssetUrl(url)
+                    //从队列中尝试获取资源结果
+                    val response: WebResourceResponse? = session!!.requestResource(url)
+                    logError("-----缓存资源同步设置:$response")
+                    response
                 } else null
             }
 
@@ -301,7 +330,7 @@ class WebViewCommonActivity : AppCompatActivity(R.layout.activity_webview_common
 
     }
 
-    private fun createJSInterface():CommonJSInterface{
-        return CommonJSInterface(this,wvContent!!)
+    private fun createJSInterface(): CommonJSInterface {
+        return CommonJSInterface(this, wvContent!!)
     }
 }

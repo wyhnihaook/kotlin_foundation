@@ -8,23 +8,11 @@ package com.kotlin.practice.helper.webview
  */
 class WebViewConfig {
 
-    //完整url由下面三个数据构成 htmlAssetUrl + extraContent + htmlCompletion
-
     /**
-     * 资源下载的路径 （针对同一个项目中嵌套其他路由信息展示-需要下载的资源内容都是不变的）由开发者提供避免问题
+     * 需要加载的html信息内容（完整html路径）
      */
     var htmlAssetUrl:String = ""
 
-    /**
-     * 可以从webView加载完毕的pageFinish回调进行获取最终的请求url进行设置
-     * 一般是用于域名和路径信息中间的特殊字符存储。例如：https://www.baidu.com/#/home?a=b 的#/ （主要是由于请求https://www.baidu.com/会重新转向为https://www.baidu.com/#/）-转向中间耗时
-     */
-    var extraContent:String = ""
-
-    /**
-     * 剩下完整url补全内容
-     */
-    var htmlCompletion:String = ""
 
     /**
      * 本地资源路径，可以不进行配置，如果没有的本地资源路径的配置，统一都从网络上获取
@@ -32,21 +20,6 @@ class WebViewConfig {
      * "web/index.html"//注意获取的相对路径前面不能添加 斜杆。例如：/web/index.html
      */
     var localHtmlAssetPath:String? = null
-
-    /**
-     * 正则表达式内容，用于获取html中的需要下载的资源相对地址
-     * 默认当前匹配规则由内部实现
-     * 示例：
-     * "href=\"([^\"]*)\""
-     * "src=\"([^\"]*)\""
-     * 从html字符串中获取href/src中引用的相对路径，结合htmlAssetUrl域名拼接成绝对路径进行资源下载
-     * 不管如何匹配，获取时：从第一个"后，最后一个"前截取出完整的相对资源地址信息
-     *
-     * href=[^">\s]*
-     * src=[^">\s]*
-     * 遇到"或者>或者空格就截止，适用于href=static/css/chunk-vantUI~cff3c281.c93b114f.css情况（较少）
-     */
-    var matches = ArrayList<String>()
 
 
 

@@ -12,16 +12,12 @@ import java.util.zip.GZIPInputStream
 
 /**
  * 描述:解析html文件类
- * 功能介绍:网络请求获取html，本地缓存html字符串内容
- * @param htmlHost 域名
- * @param htmlPath 路径
- * htmlHost + htmlPath = 完整链接
+ * 功能介绍:网络请求获取html
  *
- * htmlMatch 正则表达式获取对应的需要缓存的链接
  * 创建者:翁益亨
  * 创建日期:2023/8/23 10:27
  */
-class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayList<String>,private val eTagData:String) {
+class WebViewHtmlServer(private val htmlUrl:String,private val eTagData:String) {
 
     //建立网络连接的对象
     private var connectionImpl: URLConnection? = null
@@ -32,6 +28,8 @@ class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayLi
 
     var eTagStorage:String? = null
 
+    //html的保存域名+路径信息
+    var requestHostPath:String? = null
 
     init {
         connectionImpl = createConnection()
@@ -75,6 +73,8 @@ class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayLi
 
         try {
             var url = URL(htmlUrl)
+
+            requestHostPath =url.protocol+"://" + url.host + url.path
 
             connection = url.openConnection()
 
@@ -212,27 +212,10 @@ class WebViewHtmlServer(private val htmlUrl:String,private val htmlMatch:ArrayLi
         return try {
             connectionImpl!!.headerFields
         }catch (e:Exception){
-            HashMap<String,List<String>>()
+            HashMap()
         }
     }
 
-
-    //获取页面中需要记载的href以及src内容
-    fun getResponseLoadLink(response:String):ArrayList<String>{
-        var preLinkList = ArrayList<String>()
-
-
-
-
-
-        return preLinkList
-    }
-
-
-    //断开连接
-    fun disconnect(){
-
-    }
 
 
 }

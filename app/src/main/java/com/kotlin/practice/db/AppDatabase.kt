@@ -23,16 +23,17 @@ import com.kotlin.practice.db.web.WebDao
  * 描述:数据库
  * 功能介绍:提供操作数据库的方法
  * 数据库内部涵盖的数据表
+ * 每次数据库升级都删除原有数据（最简单的做法）
  *
  * !!需要在子线程访问!!
  * 创建者:翁益亨
  * 创建日期:2023/1/5 16:30
  */
-@Database(entities = [User::class, Book::class,AppTheme::class, Web::class],version = 10,
+@Database(entities = [User::class, Book::class,AppTheme::class, Web::class],version = 12,
 
     exportSchema=true
     ,autoMigrations = [
-        AutoMigration(from = 9, to = 10),
+        AutoMigration(from = 11, to = 12),
     ]
 
 )
@@ -60,7 +61,7 @@ abstract class AppDatabase: RoomDatabase() {
             return Room
                 .databaseBuilder(context,AppDatabase::class.java,databaseName)
                 .addMigrations(MIGRATION_1_2,MIGRATION_7_8,MIGRATION_8_9,MIGRATION_9_10)
-//                .fallbackToDestructiveMigration()//每次升级时，删除原有数据库内容
+                .fallbackToDestructiveMigration()//每次升级时，删除原有数据库内容
                 .addCallback(object :RoomDatabase.Callback(){
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)

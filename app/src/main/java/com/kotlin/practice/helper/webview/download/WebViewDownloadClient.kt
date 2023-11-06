@@ -335,8 +335,6 @@ class WebViewDownloadClient(private val mTask: DownloadTask): WebViewSessionStre
         return true
     }
 
-    private val lock = java.lang.Object()
-
     @Synchronized
     private fun getResponseStream(breakConditions: AtomicBoolean): Boolean {
         return if (readServerResponse(breakConditions)) {
@@ -345,8 +343,7 @@ class WebViewDownloadClient(private val mTask: DownloadTask): WebViewSessionStre
             val netStream: BufferedInputStream? =
                 if (mDownloadFinished) null else mConn.getResponseStreamFunc()
             mTask.mInputStream = WebViewSessionStream(this, mOutputStream, netStream,mTask.mResourceUrl)
-            //锁定后立即释放，略过该操作
-            synchronized(lock) {lock.notify()}
+
             if (mDownloadFinished) {
                 logError("${"sub resource compose a memory stream (" + mTask.mResourceUrl + ")."}")
             } else {

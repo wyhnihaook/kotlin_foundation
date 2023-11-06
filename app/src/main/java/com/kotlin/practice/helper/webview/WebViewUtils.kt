@@ -1,5 +1,7 @@
 package com.kotlin.practice.helper.webview
 
+import android.content.Context
+import android.content.res.AssetManager
 import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
@@ -8,6 +10,8 @@ import java.io.BufferedInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
+import java.io.IOException
+import java.io.InputStream
 import java.io.InputStreamReader
 import java.security.MessageDigest
 
@@ -277,6 +281,27 @@ class WebViewUtils {
             }
             return headers
         }
+
+        fun getAssetString(context:Context,assetUrl:String):String?{
+            //设置html为当前本地的信息
+            var assetString:String? = null
+            val am: AssetManager = context.resources.assets
+            var input: InputStream? = null
+            try {
+                input = am.open(assetUrl)
+                val len = input.available()
+                val buffer = ByteArray(len)
+                input.read(buffer)
+                input.close()
+                assetString = buffer.decodeToString()
+
+            } catch (e: IOException) {
+                //读取失败，依然采用网络请求方式获取
+            }
+            return assetString
+        }
     }
+
+
 
 }
